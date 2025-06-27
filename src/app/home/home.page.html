@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>CatZap</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input [(ngModel)]="customText" placeholder="Enter meme text"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="generateCat()" [disabled]="loading">
+    {{ loading ? 'Loading...' : 'Generate Cat' }}
+  </ion-button>
+
+  <div class="image-container" *ngIf="catImageUrl && !loading">
+    <img [src]="catImageUrl" alt="Cat meme" />
+  </div>
+</ion-content>
