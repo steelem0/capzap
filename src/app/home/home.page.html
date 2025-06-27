@@ -16,4 +16,9 @@
   <div class="image-container" *ngIf="catImageUrl && !loading">
     <img [src]="catImageUrl" alt="Cat meme" />
   </div>
+ 
+  <ion-button expand="full" fill="outline" color="secondary" (click)="shareCat()" *ngIf="catImageUrl && !loading">
+   {{ isMobile ? 'Share this cat 😻' : 'Copy Link 🐾' }}
+  </ion-button>
+  
 </ion-content>
