@@ -65,7 +65,7 @@ export class HomePage {
 
     this.caption = text;
 
-    this.catService.getCatWithText(text).subscribe({
+    this.catService.getCatWithText(text, moodKey || "cat").subscribe({
       next: (response) => {
         this.catImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(response.url);
         this.rawCatUrl = response.url;
