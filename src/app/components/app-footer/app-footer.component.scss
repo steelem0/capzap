@@ -1,0 +1,16 @@
+.app-footer {
+  text-align: center;
+
+  .footer-text {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--ion-color-medium);
+
+    a {
+      text-decoration: none;
+      color: var(--ion-color-primary);
+    }
+  }
+}

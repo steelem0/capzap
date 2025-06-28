@@ -43,3 +43,74 @@
   font-family: 'Fredoka', sans-serif;
   color: var(--ion-color-primary);
 }
+
+.cat-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .cat-img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .pulse-on-load {
+    animation: imagePulse 0.4s ease;
+  }
+
+  .sparkle-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+
+  .sparkle {
+    position: absolute;
+    font-size: 2rem;
+    color: #ffd700;
+    opacity: 0;
+    animation: sparklePop 0.8s ease-out;
+  }
+
+  .sparkle-1 {
+    top: -40px;
+    left: -20px;
+    animation-delay: 0s;
+  }
+
+  .sparkle-2 {
+    top: 40px;
+    right: -20px;
+    animation-delay: 0.1s;
+  }
+
+  .heart-overlay {
+    font-size: 4rem;
+    animation: pulseHeart 0.8s ease-out;
+    color: #e74c3c;
+    opacity: 0;
+  }
+}
+
+@keyframes pulseHeart {
+  0% { transform: scale(0.5); opacity: 0.2; }
+  40% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes sparklePop {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes imagePulse {
+  0% { transform: scale(0.97); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+

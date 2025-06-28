@@ -15,8 +15,15 @@
     <ion-label>{{ mood.emoji }} {{ mood.label }}</ion-label>
   </ion-chip>
 
-  <ion-card *ngIf="catImageUrl && !loading">
-    <img [src]="catImageUrl" alt="Cat meme" />
+  <ion-card *ngIf="catImageUrl && !loading" class="cat-card">
+    <div class="cat-container">
+      <img [src]="catImageUrl" alt="Cat meme" class="cat-img" [class.pulse-on-load]="showPulse" (load)="onImageLoad()" />
+      <div class="sparkle-wrapper" *ngIf="showHeartAnimation">
+        <div class="sparkle sparkle-1">✨</div>
+        <div class="sparkle sparkle-2">✨</div>
+        <div class="heart-overlay">❤️</div>
+      </div>
+    </div>
     <ion-card-content>
       <p class="caption">“{{ caption }}”</p>
     </ion-card-content>
@@ -24,8 +31,9 @@
 
   <ion-row class="ion-justify-content-center ion-margin-top">
     <ion-button (click)="generateCat()">🔁 New Zap</ion-button>
-    <ion-button fill="outline" color="danger" (click)="toggleFavorite()">❤️ Favorite</ion-button>
-    <ion-button fill="outline" color="secondary" (click)="shareCat()">📤 Share</ion-button>
+    <ion-button *ngIf="catImageUrl && !loading" fill="outline" color="danger" (click)="toggleFavorite()">❤️ Favorite</ion-button>
+    <ion-button *ngIf="catImageUrl && !loading" fill="outline" color="secondary" (click)="shareCat()">📤 Share</ion-button>
+    <ion-button routerLink="/favorites">📚 View Favorites</ion-button>
   </ion-row>
-
 </ion-content>
+  <app-footer></app-footer>

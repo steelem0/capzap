@@ -1,0 +1,28 @@
+.about-page {
+  a {
+    color: var(--ion-color-primary);
+    text-decoration: none;
+  }
+
+  .lexi-img {
+    margin-top: 10px;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .animate-in {
+    animation: fadeInSlideUp 0.5s ease both;
+  }
+
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
