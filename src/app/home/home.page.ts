@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CatService } from '../services/cat.service';
 import { ShareService } from '../services/share.service';
+import { MoodService } from '../services/mood.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ToastController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
@@ -17,18 +18,40 @@ export class HomePage {
   catImageUrl: SafeResourceUrl | null = null;
   rawCatUrl: string = '';
   loading = false;
-
+  darkMode = false;
+  moods = this.moodService.getMoods();
+  selectedMood: any = null;
+  caption = '';
 
   constructor(
     private catService: CatService,
     private shareService: ShareService,
+    private moodService: MoodService,
     private sanitizer: DomSanitizer,
-     private toastCtrl: ToastController,
-     private platform: Platform
+    private toastCtrl: ToastController,
+    private platform: Platform
   ) {}
 
-  get isMobile(): boolean {
-    return this.platform.is('hybrid') || this.platform.is('mobile');
+  ngOnInit() {
+      // Load preference from localStorage or system
+      const storedPref = localStorage.getItem('dark-mode');
+      this.darkMode = storedPref ? storedPref === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.setDarkMode(this.darkMode);
+    }
+
+    toggleDarkMode() {
+      this.darkMode = !this.darkMode;
+      this.setDarkMode(this.darkMode);
+      localStorage.setItem('dark-mode', String(this.darkMode));
+    }
+
+    setDarkMode(enable: boolean) {
+      document.body.classList.toggle('dark', enable);
+    }
+
+  selectMood(mood: any) {
+    this.selectedMood = mood;
+    this.generateCat();
   }
 
   generateCat() {

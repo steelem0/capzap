@@ -1,24 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>CatZap</ion-title>
+    <ion-title>🐾 CatZap</ion-title>
+    <ion-buttons slot="end">
+      <ion-toggle [(ngModel)]="darkMode" (ionChange)="toggleDarkMode()" mode="ios"></ion-toggle>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-input [(ngModel)]="customText" placeholder="Enter meme text"></ion-input>
-  </ion-item>
 
-  <ion-button expand="full" (click)="generateCat()" [disabled]="loading">
-    {{ loading ? 'Loading...' : 'Generate Cat' }}
-  </ion-button>
+  <h2>What kind of CatZap are you feeling?</h2>
 
-  <div class="image-container" *ngIf="catImageUrl && !loading">
+  <ion-chip *ngFor="let mood of moods" (click)="selectMood(mood)" [color]="mood.key === selectedMood?.key ? 'primary' : 'medium'">
+    <ion-label>{{ mood.emoji }} {{ mood.label }}</ion-label>
+  </ion-chip>
+
+  <ion-card *ngIf="catImageUrl && !loading">
     <img [src]="catImageUrl" alt="Cat meme" />
-  </div>
- 
-  <ion-button expand="full" fill="outline" color="secondary" (click)="shareCat()" *ngIf="catImageUrl && !loading">
-   {{ isMobile ? 'Share this cat 😻' : 'Copy Link 🐾' }}
-  </ion-button>
-  
+    <ion-card-content>
+      <p class="caption">“{{ caption }}”</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row class="ion-justify-content-center ion-margin-top">
+    <ion-button (click)="generateCat()">🔁 New Zap</ion-button>
+    <ion-button fill="outline" color="danger" (click)="toggleFavorite()">❤️ Favorite</ion-button>
+    <ion-button fill="outline" color="secondary" (click)="shareCat()">📤 Share</ion-button>
+  </ion-row>
+
 </ion-content>

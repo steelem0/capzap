@@ -40,3 +40,15 @@
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+h2 {
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: var(--ion-text-color);
+}
+
+ion-chip {
+  margin: 4px;
+  font-size: 1rem;
+}
+
