@@ -35,19 +35,17 @@ export class HomePage {
     private platform: Platform
   ) {}
 
-  ngOnInit() {
-    this.themeService.applyTheme(true);
-  }
+    ngOnInit() {
+      const darkPref = this.themeService.isDarkMode();
+      this.darkMode = darkPref;
+      this.themeService.applyTheme(darkPref);
+    }
 
-  toggleDarkMode() {
-    this.darkMode = !this.darkMode;
-    this.setDarkMode(this.darkMode);
-    localStorage.setItem('dark-mode', String(this.darkMode));
-  }
+    toggleDarkMode() {
+      this.darkMode = this.themeService.toggleTheme();
+    }
 
-  setDarkMode(enable: boolean) {
-    document.body.classList.toggle('dark', enable);
-  }
+
 
   selectMood(mood: any) {
     this.selectedMood = mood;
